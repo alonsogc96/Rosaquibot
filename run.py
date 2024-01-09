@@ -2,14 +2,18 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
 
+with open('credentials.cfg', 'r') as secreto:
+    user = secreto.readline().strip()
+    passwd = secreto.readline().strip()
+
 driver = webdriver.Edge()
 
 driver.get('http://piloto.dacclaro.com.pe')
 
 name = driver.find_element(By.NAME, 'loginID')
-name.send_keys('D109580')
+name.send_keys(user)
 password = driver.find_element(By.NAME, 'password')
-password.send_keys('@GOKU15')
+password.send_keys(passwd)
 password.submit()
 time.sleep(3)
 driver.switch_to.frame(0); 
